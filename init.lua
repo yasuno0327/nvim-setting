@@ -8,7 +8,7 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
-    "clone",
+"clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
@@ -52,6 +52,11 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
+
+require'lspconfig'.elixirls.setup{
+  cmd = { "/Users/yoshitomo.yasuno/elixir-ls/release/language_server.sh" },
+  on_attach = on_attach,
+}
 
 -- Setup autocompletion --
 local cmp = require("cmp")
@@ -99,3 +104,8 @@ require'nvim-treesitter.configs'.setup {
 }
 
 require"bufferline".setup{}
+
+require("auto-save").setup {
+  enabled = true,
+  trigger_events = {"BufLeave"},
+}

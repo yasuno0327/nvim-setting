@@ -40,36 +40,10 @@ return {
   "folke/tokyonight.nvim",
 
 	-- LSP
-  --[[
 	"neovim/nvim-lspconfig", -- enable LSP
 	"williamboman/nvim-lsp-installer",  -- simple to use language server installer
 	"jose-elias-alvarez/null-ls.nvim",  -- for formatters and linters
 	"glepnir/lspsaga.nvim",  -- LSP UIs
-  --]]
-
-  {
-    "elixir-tools/elixir-tools.nvim",
-    version = "*",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local elixir = require("elixir")
-      local elixirls = require("elixir.elixirls")
-
-      elixir.setup {
-        nextls = {enable = false},
-        credo = {enable = true},
-        elixirls = {
-          enable = true,
-          settings = elixirls.settings {
-            dialyzerEnabled = true,
-            enableTestLenses = true,
-            suggestSpecs = true,
-          },
-        }
-      }
-    end,
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
 
 	-- Formatter
 	"MunifTanjim/prettier.nvim",
@@ -104,7 +78,7 @@ return {
 	{
 		"ms-jpq/chadtree",
 		branch = "chad",
-		build = "python3 -m chadtree deps",
+		build = "pytjhon3 -m chadtree deps",
 	},
 
   -- barbar
@@ -118,7 +92,8 @@ return {
     version = "^1.0.0",
   },
 
-  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  {"akinsho/bufferline.nvim", version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  "Pocco81/auto-save.nvim",
 
 	-- VSCode like にする
 	"lukas-reineke/indent-blankline.nvim",
