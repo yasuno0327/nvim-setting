@@ -26,6 +26,7 @@ local options = {
   expandtab = true,
   shiftwidth = 2,
   tabstop = 2,
+  softtabstop = 2,
   cursorline = true,
   number = true,
   relativenumber = false,
@@ -35,7 +36,7 @@ local options = {
   winblend = 0,
   wildoptions = "pum",
   pumblend = 5,
-  background = "dark",
+--  background = "dark",
   scrolloff = 8,
   sidescrolloff = 8,
   guifont = "monospace:h17",
@@ -52,4 +53,3 @@ end
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
-vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work

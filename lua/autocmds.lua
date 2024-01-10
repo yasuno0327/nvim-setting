@@ -30,6 +30,6 @@ autocmd({"TermOpen"}, {
 
 -- Open Terminal on the bottom of the current window, like VSCode.
 -- 	Horizontal split
-user_command("TS", "sp | wincmd j | resize 20 | terminal <args>", { nargs = "*" })
+user_command("T", "sp | wincmd j | resize 20 | terminal <args>", { nargs = "*" })
 -- 	Vertical split
 user_command('TS', 'vs | wincmd j | resize 100 | terminal <args>', { nargs = '*' })

@@ -108,3 +108,27 @@ keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 -- 常にインサートモード
 keymap("n", "T", "T <cr>", { noremap = true })
 keymap("n", "TS", ":TS <cr>", { noremap = true })
+
+-- Telescope --
+keymap('n', '<leader>ff', ":Telescope find_files<CR>", { noremap = true })
+keymap('n', '<leader>fg', ":Telescope live_grep<CR>", { noremap = true })
+keymap('n', '<leader>fh', ":Telescope help_tags<CR>", { noremap = true })
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", { noremap = true })
+--[[
+keymap(
+  "n",
+  "<leader>fb",
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+  { noremap = true }
+)
+--]]
+
+-- CheatSheet --
+keymap("n", "<leader>?", ":Cheatsheet<CR>", { noremap = true })
+
+-- ChadTree --
+keymap("n", "<leader>v", ":CHADopen<CR>", { noremap = true })
+
+-- lsp --
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })

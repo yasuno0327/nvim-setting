@@ -1,9 +1,8 @@
 require("base")
+require("plugins")
 require("autocmds")
 require("options")
 require("keymaps")
-require("colorscheme")
-require("plugins")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -19,3 +18,84 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
+require("colorscheme")
+
+require("cheatsheet").setup({
+  bundled_cheatsheets = true,
+  bundled_plugin_cheatsheets = true,
+  include_only_installed_plugins = true,
+  telescope_mappings = {
+    ['<CR>'] = require('cheatsheet.telescope.actions').select_or_fill_commandline,
+    ['<A-CR>'] = require('cheatsheet.telescope.actions').select_or_execute,
+    ['<C-Y>'] = require('cheatsheet.telescope.actions').copy_cheat_value,
+    ['<C-E>'] = require('cheatsheet.telescope.actions').edit_user_cheatsheet,
+  },
+})
+
+require("hop").setup()
+require("nvim-surround").setup()
+
+-- initialize lsp --
+local on_attach = function(client, bufnr)
+  local opts = { noremap=true, silent=true }
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+end
+
+-- Setup autocompletion --
+local cmp = require("cmp")
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      -- For `vsnip` user.
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "vsnip" },
+  },
+  formatting = {
+    format = require("lspkind").cmp_format({
+      with_text = true,
+      menu = {
+        nvim_lsp = "[LSP]",
+      },
+    }),
+  },
+})
+
+-- Treesitter --
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = all,
+  sync_install = false,
+  ignore_install = {},
+  highlight = { enable = true, disable = {} },
+  indent = { enable = true },
+  autotag = { enable = true },
+  rainbow = {
+  	enable = true,
+  	extended_mode = true,
+  	max_file_lines = nil,
+  }
+}
+
+require"bufferline".setup{}
