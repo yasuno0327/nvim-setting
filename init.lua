@@ -68,11 +68,24 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<c-p>"] = cmp.mapping.select_prev_item(),
+    ["<c-n>"] = cmp.mapping.select_next_item(),
+    ["<cr>"] = cmp.mapping.confirm(),
+    ["<tab>"] = cmp.mapping(
+      function(fallback)
+        if cmp.visible() then
+          local entry = cmp.get_selected_entry()
+          if not entry then
+                  cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
+              end
+              cmp.confirm()
+          else
+              fallback()
+          end
+      end,
+      {"i", "s", "c"}
+    )
+
   },
   sources = {
     { name = "nvim_lsp" },
@@ -105,7 +118,21 @@ require'nvim-treesitter.configs'.setup {
 
 require"bufferline".setup{}
 
-require("auto-save").setup {
-  enabled = true,
-  trigger_events = {"BufLeave"},
+require('nvim-treesitter.configs').setup {
+  endwise = {
+      enable = true,
+  },
 }
+
+require("conform").setup{
+  formatters_by_ft = {
+    elixir = {"mix"},
+  },
+  format_on_save = {
+    timeout_ms = 5000,
+    lsp_fallback = true,
+  },
+}
+
+vim.notify = require("notify")
+require("ibl").setup()
