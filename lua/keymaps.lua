@@ -106,8 +106,8 @@ keymap("n", "<Space>a", "gg<S-v>Gd", opts)
 --  Escでノーマルモードに戻る
 keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 -- 常にインサートモード
-keymap("n", "T", "T <cr>", { noremap = true })
-keymap("n", "TS", ":TS <cr>", { noremap = true })
+--keymap("n", "T", "T <cr>", { noremap = true })
+--keymap("n", "TS", ":TS <cr>", { noremap = true })
 
 -- Telescope --
 keymap('n', '<leader>ff', ":Telescope find_files<CR>", { noremap = true })
@@ -132,3 +132,10 @@ keymap("n", "<leader>v", ":CHADopen<CR>", { noremap = true })
 -- lsp --
 keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+
+-- copilot --
+vim.g.copilot_no_tab_map = true
+keymap("i", "<C-i>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+-- toggleterm --
+keymap("n", "<C-t>", ":ToggleTerm dir=git_dir direction=horizontal <CR>", { noremap = true })

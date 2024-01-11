@@ -136,3 +136,5 @@ require("conform").setup{
 
 vim.notify = require("notify")
 require("ibl").setup()
+
+require"toggleterm".setup {}

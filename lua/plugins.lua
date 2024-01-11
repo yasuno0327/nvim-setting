@@ -98,4 +98,8 @@ return {
 	"folke/zen-mode.nvim",
 
 	"rcarriga/nvim-notify",
+
+  {"github/copilot.vim", lazy = false},
+
+  {"akinsho/toggleterm.nvim", version = "*", config = true},
 }
