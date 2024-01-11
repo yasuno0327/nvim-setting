@@ -45,7 +45,18 @@ return {
   {"phaazon/hop.nvim", branch = "v2"},
 
 	-- Telescope
-  {"nvim-telescope/telescope.nvim", tag = "0.1.5", dependencies = { "nvim-lua/plenary.nvim" }},
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.5", 
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      version = "^1.0.0",
+    },
+    config = function()
+      require("telescope").load_extension("live_grep_args")
+    end
+  },
 	"nvim-telescope/telescope-file-browser.nvim",
 
   -- Cheatsheet
@@ -79,18 +90,18 @@ return {
     version = "^1.0.0",
   },
 
-  {
-    "okuuva/auto-save.nvim",
-    event = { "BufEnter", "BufLeave" },
-    opts = {
-      enabled = true,
-      trigger_events = {
-        immediate_save = { "BufLeave" },
-        defer_save = {},
-        cancel_defered_save = {},
-      },
-    },
-  },
+--  {
+--    "okuuva/auto-save.nvim",
+--    event = { "BufEnter", "BufLeave" },
+--    opts = {
+--      enabled = true,
+--      trigger_events = {
+--        immediate_save = { "BufLeave" },
+--        defer_save = {},
+--        cancel_defered_save = {},
+--      },
+--    },
+--  },
 
 	-- VSCode like にする
 	"lukas-reineke/indent-blankline.nvim",
@@ -102,4 +113,6 @@ return {
   {"github/copilot.vim", lazy = false},
 
   {"akinsho/toggleterm.nvim", version = "*", config = true},
+
+  {"Shatur/neovim-session-manager"}
 }

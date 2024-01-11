@@ -138,3 +138,5 @@ vim.notify = require("notify")
 require("ibl").setup()
 
 require"toggleterm".setup {}
+
+require"session_manager".setup {}

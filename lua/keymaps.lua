@@ -45,11 +45,11 @@ keymap("n", "te", ":tabedit", opts)
 -- 新しいタブを一番右に作る
 keymap("n", "gn", ":tabnew<Return>", opts)
 
--- move tab
--- 右へ
-keymap("n", "gh", "gT", opts)
+-- move buffer
 -- 左へ
-keymap("n", "gl", "gt", opts)
+keymap("n", "gh", ":bprev<CR>", opts)
+-- 右へ
+keymap("n", "gl", ":bnext<CR>", opts)
 
 -- Split window
 keymap("n", "ss", ":split<Return><C-w>w", opts)
@@ -110,32 +110,24 @@ keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 --keymap("n", "TS", ":TS <cr>", { noremap = true })
 
 -- Telescope --
-keymap('n', '<leader>ff', ":Telescope find_files<CR>", { noremap = true })
-keymap('n', '<leader>fg', ":Telescope live_grep<CR>", { noremap = true })
-keymap('n', '<leader>fh', ":Telescope help_tags<CR>", { noremap = true })
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", { noremap = true })
---[[
-keymap(
-  "n",
-  "<leader>fb",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-  { noremap = true }
-)
---]]
+keymap('n', '<leader>ff', ":Telescope find_files<CR>", opts)
+keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+keymap('n', '<leader>fh', ":Telescope help_tags<CR>", opts)
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 -- CheatSheet --
-keymap("n", "<leader>?", ":Cheatsheet<CR>", { noremap = true })
+keymap("n", "<leader>?", ":Cheatsheet<CR>", opts)
 
 -- ChadTree --
-keymap("n", "<leader>v", ":CHADopen<CR>", { noremap = true })
+keymap("n", "<leader>v", ":CHADopen<CR>", opts)
 
 -- lsp --
-keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
-keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 
 -- copilot --
 vim.g.copilot_no_tab_map = true
 keymap("i", "<C-i>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- toggleterm --
-keymap("n", "<C-t>", ":ToggleTerm dir=git_dir direction=horizontal <CR>", { noremap = true })
+keymap("n", "<C-t>", ":ToggleTerm dir=git_dir direction=horizontal <CR>", opts)
