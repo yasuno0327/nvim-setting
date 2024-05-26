@@ -42,6 +42,9 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- Better paste with Newline
 keymap("n", "p", ":pu<CR>", opts)
 
+-- Close Buffer Tab --
+keymap("n", "<C-w>", ":BufferClose<CR>", opts)
+
 -- Tab --
 -- New tab
 keymap("n", "te", ":tabedit", opts)
@@ -50,9 +53,9 @@ keymap("n", "gn", ":tabnew<Return>", opts)
 
 -- move buffer
 -- 左へ
-keymap("n", "gh", ":bprev<CR>", opts)
+keymap("n", "gh", ":BufferPrevious<CR>", opts)
 -- 右へ
-keymap("n", "gl", ":bnext<CR>", opts)
+keymap("n", "gl", ":BufferNext<CR>", opts)
 
 -- Split window
 keymap("n", "ss", ":split<Return><C-w>w", opts)
@@ -134,3 +137,5 @@ keymap("i", "<C-i>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- toggleterm --
 keymap("n", "<C-t>", ":ToggleTerm dir=git_dir direction=horizontal <CR>", opts)
+
+keymap("n", "<leader>l", ":call MixRunCurrentTest()<CR>", opts)

@@ -8,7 +8,7 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
-"clone",
+    "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
@@ -37,7 +37,7 @@ require("nvim-surround").setup()
 
 -- initialize lsp --
 local on_attach = function(client, bufnr)
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
@@ -53,10 +53,13 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
-require'lspconfig'.elixirls.setup{
+require 'lspconfig'.elixirls.setup {
   cmd = { "/Users/yoshitomo.yasuno/elixir-ls/release/language_server.sh" },
   on_attach = on_attach,
 }
+require 'lspconfig'.lua_ls.setup {}
+require 'lspconfig'.nginx_language_server.setup {}
+require 'lspconfig'.gopls.setup {}
 
 -- Setup autocompletion --
 local cmp = require("cmp")
@@ -76,14 +79,14 @@ cmp.setup({
         if cmp.visible() then
           local entry = cmp.get_selected_entry()
           if not entry then
-                  cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
-              end
-              cmp.confirm()
-          else
-              fallback()
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           end
+          cmp.confirm()
+        else
+          fallback()
+        end
       end,
-      {"i", "s", "c"}
+      { "i", "s", "c" }
     )
 
   },
@@ -102,7 +105,7 @@ cmp.setup({
 })
 
 -- Treesitter --
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   ensure_installed = all,
   sync_install = false,
   ignore_install = {},
@@ -110,23 +113,23 @@ require'nvim-treesitter.configs'.setup {
   indent = { enable = true },
   autotag = { enable = true },
   rainbow = {
-  	enable = true,
-  	extended_mode = true,
-  	max_file_lines = nil,
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
   }
 }
 
-require"bufferline".setup{}
+require "bufferline".setup {}
 
 require('nvim-treesitter.configs').setup {
   endwise = {
-      enable = true,
+    enable = true,
   },
 }
 
-require("conform").setup{
+require("conform").setup {
   formatters_by_ft = {
-    elixir = {"mix"},
+    elixir = { "mix" },
   },
   format_on_save = {
     timeout_ms = 5000,
@@ -137,9 +140,9 @@ require("conform").setup{
 vim.notify = require("notify")
 require("ibl").setup()
 
-require"toggleterm".setup {}
+require "toggleterm".setup {}
 
 local config = require('session_manager.config')
-require"session_manager".setup {
+require "session_manager".setup {
   autoload_mode = config.AutoloadMode.CurrentDir,
 }
