@@ -4,17 +4,17 @@ local user_command = vim.api.nvim_create_user_command
 
 -- Restore cursor location when file is opened
 autocmd({ "BufReadPost" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.api.nvim_exec('silent! normal! g`"zv', false)
-	end,
+  pattern = { "*" },
+  callback = function()
+    vim.api.nvim_exec('silent! normal! g`"zv', false)
+  end,
 })
 
-autocmd({"VimEnter"}, { command = "CHADopen"})
+autocmd({ "VimEnter" }, { command = "CHADopen" })
 
 -- Session --
-autocmd({"BufWritePre"}, {
-  callback = function ()
+autocmd({ "BufWritePre" }, {
+  callback = function()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
       -- Don't save while there's any 'nofile' buffer open.
       if vim.api.nvim_get_option_value("buftype", { buf = buf }) == 'nofile' then
@@ -27,8 +27,8 @@ autocmd({"BufWritePre"}, {
 
 -- Terminal --
 -- Open with insert mode.
-autocmd({"TermOpen"}, {
-	command = "startinsert",
+autocmd({ "TermOpen" }, {
+  command = "startinsert",
 })
 
 -- Open Terminal on the bottom of the current window, like VSCode.

@@ -53,8 +53,9 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
+require 'lspconfig'.terraformls.setup {}
 require 'lspconfig'.elixirls.setup {
-  cmd = { "/Users/yoshitomo.yasuno/elixir-ls/release/language_server.sh" },
+  cmd = { "/Users/yoshitomo.yasuno/elixir-ls/language_server.sh" },
   on_attach = on_attach,
 }
 require 'lspconfig'.lua_ls.setup {}
