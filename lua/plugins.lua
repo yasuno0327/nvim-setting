@@ -86,8 +86,10 @@ return {
       'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
       'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
-    init = function() vim.g.barbar_auto_setup = true end,
-    version = "^1.0.0",
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      animation = true,
+    },
   },
 
   -- url-open
@@ -105,29 +107,14 @@ return {
     end,
   },
 
-  --  {
-  --    "okuuva/auto-save.nvim",
-  --    event = { "BufEnter", "BufLeave" },
-  --    opts = {
-  --      enabled = true,
-  --      trigger_events = {
-  --        immediate_save = { "BufLeave" },
-  --        defer_save = {},
-  --        cancel_defered_save = {},
-  --      },
-  --    },
-  --  },
-
   -- VSCode like にする
-  "lukas-reineke/indent-blankline.nvim",
-
-  "folke/zen-mode.nvim",
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl",  opts = {} },
 
   "rcarriga/nvim-notify",
 
-  { "github/copilot.vim",           lazy = false },
+  { "github/copilot.vim",                  lazy = false },
 
-  { "akinsho/toggleterm.nvim",      version = "*", config = true },
+  { "akinsho/toggleterm.nvim",             version = "*", config = true },
 
   { "Shatur/neovim-session-manager" },
 
