@@ -3,6 +3,7 @@ local term_opts = { silent = true }
 
 --local keymap = vim.keymap
 local keymap = vim.api.nvim_set_keymap
+local bufkeymap = vim.api.nvim_buf_set_keymap
 --[[
   lhs: left-hand-side - キー入力lhs
   rhs: right-hand-side - 割当先rhs
@@ -128,8 +129,11 @@ keymap("n", "<leader>?", ":Cheatsheet<CR>", opts)
 keymap("n", "<leader>v", ":CHADopen<CR>", opts)
 
 -- lsp --
-keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+keymap('n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 -- copilot --
 vim.g.copilot_no_tab_map = true
@@ -139,3 +143,5 @@ keymap("i", "<C-i>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 keymap("n", "<C-t>", ":ToggleTerm dir=git_dir direction=horizontal <CR>", opts)
 
 keymap("n", "<leader>l", ":call MixRunCurrentTest()<CR>", opts)
+
+
