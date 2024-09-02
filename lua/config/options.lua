@@ -36,7 +36,6 @@ local options = {
   winblend = 0,
   wildoptions = "pum",
   pumblend = 5,
---  background = "dark",
   scrolloff = 8,
   sidescrolloff = 8,
   guifont = "monospace:h17",

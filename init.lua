@@ -1,2 +1,5 @@
 require("config.lazy")
 require("lazy").setup("plugins")
+require("config.autocmds")
+require("config.keymaps")
+-- require("config.options")

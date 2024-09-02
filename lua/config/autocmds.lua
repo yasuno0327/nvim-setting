@@ -3,17 +3,17 @@ local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 local user_command = vim.api.nvim_create_user_command
 
 -- Restore cursor location when file is opened
-autocmd({ "BufReadPost" }, {
+autocmd({"BufReadPost"}, {
   pattern = { "*" },
   callback = function()
     vim.api.nvim_exec('silent! normal! g`"zv', false)
   end,
 })
 
-autocmd({ "VimEnter" }, { command = "CHADopen" })
+autocmd({"VimEnter"}, { command = "CHADopen" })
 
 -- Session --
-autocmd({ "BufWritePre" }, {
+autocmd({"BufWritePre"}, {
   callback = function()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
       -- Don't save while there's any 'nofile' buffer open.
@@ -27,7 +27,7 @@ autocmd({ "BufWritePre" }, {
 
 -- Terminal --
 -- Open with insert mode.
-autocmd({ "TermOpen" }, {
+autocmd({"TermOpen"}, {
   command = "startinsert",
 })
 
@@ -36,3 +36,19 @@ autocmd({ "TermOpen" }, {
 user_command("T", "sp | wincmd j | resize 20 | terminal <args>", { nargs = "*" })
 -- 	Vertical split
 user_command('TS', 'vs | wincmd j | resize 100 | terminal <args>', { nargs = '*' })
+
+-- lsp --
+autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
+-- conform --
+autocmd({"BufWritePre"}, {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})

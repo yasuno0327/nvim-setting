@@ -10,10 +10,9 @@ return {
   { 
     'hrsh7th/nvim-cmp',
     opts = function(_, opts)
-
       local cmp = require('cmp')
 
-      opts.mapping = vim.tbl_extend('force', opts.mapping, {
+      opts.mapping = {
         ['<c-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
         ['<c-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
         ['<cr>'] = cmp.mapping.confirm(),
@@ -31,12 +30,12 @@ return {
           end,
           { 'i', 's', 'c' }                                                             
         )
-      })
+      }
 
-      opts.sources = vim.tbl_extend('force', opts.sources, cmp.config.sources({
+      opts.sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'vsnip' },
-      }))
+      })
     end,
   },
 }

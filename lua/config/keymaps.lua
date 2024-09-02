@@ -23,7 +23,7 @@ local bufkeymap = vim.api.nvim_buf_set_keymap
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Modes
 --   normal_mode = 'n',
@@ -113,7 +113,7 @@ keymap("n", "<Space>a", "gg<S-v>Gd", opts)
 --  Escでノーマルモードに戻る
 keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 -- 常にインサートモード
---keymap("n", "T", "T <cr>", { noremap = true })
+keymap("n", "T", "T <cr>", { noremap = true })
 --keymap("n", "TS", ":TS <cr>", { noremap = true })
 
 -- Telescope --
@@ -121,9 +121,6 @@ keymap('n', '<leader>ff', ":Telescope find_files<CR>", opts)
 keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 keymap('n', '<leader>fh', ":Telescope help_tags<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-
--- CheatSheet --
-keymap("n", "<leader>?", ":Cheatsheet<CR>", opts)
 
 -- ChadTree --
 keymap("n", "<leader>v", ":CHADopen<CR>", opts)
