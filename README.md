@@ -23,7 +23,7 @@ brew install lazygit
 brew install fd
 ```
 
-Install lua5.1 for lazynvim.
+Manually install lua5.1 for lazynvim. (Can't get version 5.1 with homebrew)
 ```
 wget https://www.lua.org/ftp/lua-5.1.5.tar.gz
 tar xzf lua-5.1.5.tar.gz
