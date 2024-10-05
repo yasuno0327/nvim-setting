@@ -1,5 +1,3 @@
 require("config.lazy")
-require("lazy").setup("plugins")
 require("config.autocmds")
-require("config.keymaps")
--- require("config.options")
+-- config/keymaps and config/options are automatically loaded before lazy.nvim startup
