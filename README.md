@@ -1,5 +1,5 @@
 # My NeoVim Setting
-It's my neovim setting file repository.
+It's my own neovim settings.
 
 # Setup
 Install neovim.
