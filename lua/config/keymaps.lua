@@ -105,12 +105,6 @@ keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 keymap("n", "T", "T <cr>", { noremap = true })
 --keymap("n", "TS", ":TS <cr>", { noremap = true })
 
--- Telescope --
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>", opts)
-keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
-keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-
 -- ChadTree --
 keymap("n", "<leader>v", ":CHADopen<CR>", opts)
 
