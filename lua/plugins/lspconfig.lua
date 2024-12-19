@@ -13,6 +13,8 @@ return {
 			lspconfig.gopls.setup({})
 			lspconfig.lua_ls.setup({})
 			lspconfig.terraformls.setup({})
+			lspconfig.jdtls.setup({})
+			lspconfig.pyright.setup({})
 		end,
 	},
 	{
