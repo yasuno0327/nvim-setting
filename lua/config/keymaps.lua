@@ -83,6 +83,13 @@ keymap("n", "<Space>q", ":<C-u>qa!<Return>", opts)
 -- Stop highlighting.
 keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)
 
+local function insertFullPath()
+	local filepath = vim.fn.expand("%")
+	vim.fn.setreg("+", filepath)
+end
+
+vim.keymap.set("n", "<leader>pc", insertFullPath, { noremap = true, silent = true })
+
 -- Visual --
 -- Stay in indent mode (Allow multiple indentation in Visual mode.)
 keymap("v", "<", "<gv", opts)
