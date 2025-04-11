@@ -3,7 +3,6 @@ local term_opts = { silent = true }
 
 --local keymap = vim.keymap
 local keymap = vim.api.nvim_set_keymap
-local bufkeymap = vim.api.nvim_buf_set_keymap
 --[[
   lhs: left-hand-side - キー入力lhs
   rhs: right-hand-side - 割当先rhs
@@ -128,5 +127,3 @@ keymap("i", "<C-i>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- toggleterm --
 keymap("n", "<C-t>", ":ToggleTerm dir=git_dir direction=horizontal <CR>", opts)
-
-keymap("n", "<leader>l", ":call MixRunCurrentTest()<CR>", opts)

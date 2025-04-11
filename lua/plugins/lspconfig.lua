@@ -14,6 +14,7 @@ return {
 			lspconfig.terraformls.setup({})
 			lspconfig.jdtls.setup({})
 			lspconfig.pyright.setup({})
+			lspconfig.tflint.setup({})
 		end,
 	},
 	{

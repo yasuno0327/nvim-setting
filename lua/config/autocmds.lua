@@ -25,13 +25,6 @@ autocmd({ "BufWritePre" }, {
 	end,
 })
 
--- linter
-autocmd({ "BufWritePost" }, {
-	callback = function()
-		require("lint").try_lint()
-	end,
-})
-
 -- Terminal --
 -- Open with insert mode.
 autocmd({ "TermOpen" }, {
