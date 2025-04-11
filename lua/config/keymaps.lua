@@ -127,3 +127,9 @@ keymap("i", "<C-i>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- toggleterm --
 keymap("n", "<C-t>", ":ToggleTerm dir=git_dir direction=horizontal <CR>", opts)
+
+-- telescope --
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>", opts)
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
