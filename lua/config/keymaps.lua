@@ -121,9 +121,9 @@ keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
--- copilot --
-vim.g.copilot_no_tab_map = true
-keymap("i", "<C-i>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+-- copilot (now disabled) --
+-- vim.g.copilot_no_tab_map = true
+-- keymap("i", "<C-i>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- toggleterm --
 keymap("n", "<C-t>", ":ToggleTerm dir=git_dir direction=horizontal <CR>", opts)
